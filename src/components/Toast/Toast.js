@@ -8,7 +8,7 @@ import {
 } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
-
+import { useEscapeKey } from '../../hooks';
 import styles from './Toast.module.css';
 
 const ICONS_BY_VARIANT = {
@@ -21,14 +21,6 @@ const ICONS_BY_VARIANT = {
 function Toast(props) {
   const { children, variant, isOpen, onClose, ...rest } = props;
   const Icon = ICONS_BY_VARIANT[variant] ?? Info;
-
-  React.useEffect(() => {
-    function handleKeyDown(e) {
-      if (e.key === 'Escape') onClose();
-    }
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   if (!isOpen) return null;
 

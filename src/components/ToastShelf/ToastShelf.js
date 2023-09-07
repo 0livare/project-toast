@@ -2,7 +2,7 @@ import React from 'react';
 
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
-import { useToast } from './ToastContext';
+import { useToast } from '../ToastProvider';
 
 function ToastShelf() {
   const { activeToasts, removeToast } = useToast();

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEscapeKey } from '../hooks';
 
 const ToastContext = React.createContext({
   activeToasts: [],
@@ -8,6 +9,10 @@ const ToastContext = React.createContext({
 
 export function ToastProvider(props) {
   const [activeToasts, setActiveToasts] = React.useState([]);
+
+  useEscapeKey(() => {
+    setActiveToasts([]);
+  });
 
   const value = React.useMemo(() => {
     function createToast(message, variant) {
